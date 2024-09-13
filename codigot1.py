@@ -67,6 +67,8 @@ class PCB:
             self.met_2()
         else:
             raise ValueError("Método no válido. Usa 'combinatoria' o 'recursivo'.") 
+            
+#código para grafico
 t_combinatoria = []
 t_recursivo = []
 n_values = range(4, 15)  # Prueba tamaños pequeños para evitar tiempos excesivos en recursión
@@ -96,5 +98,5 @@ plt.ylabel('Tiempo de ejecución (segundos)')
 plt.title('Comparación de tiempos de ejecución')
 plt.legend()
 plt.grid(True)
-plt.savefig('tiempos_ejecucion.svg')  # Guarda el gráfico como SVG
+plt.savefig('tiempos_ejecucion.svg') 
 plt.show()     
