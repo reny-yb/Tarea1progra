@@ -98,5 +98,3 @@ plt.legend()
 
 # Mostrar la gráfica
 plt.show()
-=======
->>>>>>> 41ba0273657ec5f6849c68d8ceba7db5274c8c73
