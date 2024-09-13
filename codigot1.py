@@ -1,8 +1,5 @@
-import numpy as np
-import time
-import matplotlib.pyplot as plt
-from time import perf_counter # Mide el tiempo de ejecución de código de manera precisa
 
+<<<<<<< HEAD
 #Creamos el decorador que se aplica sobre la función ejecución que calcula el tiempo de ejecución
 def tiempo_ejecucion(func):
     def wrapper(self, metodo, *args, **kwargs):
@@ -99,3 +96,5 @@ plt.legend()
 
 # Mostrar la gráfica
 plt.show()
+=======
+>>>>>>> 41ba0273657ec5f6849c68d8ceba7db5274c8c73
