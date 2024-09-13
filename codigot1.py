@@ -95,6 +95,6 @@ plt.ylabel('Tiempo de ejecución (segundos)')
 plt.title('Comparación de tiempos de ejecución (Combinatoria vs Recursivo)')
 plt.xticks(x, labels)
 plt.legend()
-
+plt.savefig('tiempos_ejecucion.svg')  # Guarda el gráfico como SVG
 # Mostrar la gráfica
 plt.show()
