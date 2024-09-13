@@ -7,10 +7,11 @@ from time import perf_counter # Mide el tiempo de ejecución de código de maner
 def tiempo_ejecucion(func):
     def wrapper(self, metodo, *args, **kwargs):
         inicio = time.time()  # tiempo de inicio
-        resultado = func(self, metodo, *args, **kwargs)
+        func(self, metodo, *args, **kwargs)  # ejecuta el método (no necesita retornar valor)
         fin = time.time()  # tiempo de fin
-        print(f"Tiempo de ejecución para {func.__name__} ({metodo}): {fin - inicio:.6f} segundos") #cantidad de decimales
-        return resultado
+        tiempo_total = fin - inicio
+        print(f"Tiempo para {func.__name__} ({metodo}): {tiempo_total:.6f} segundos")
+        return tiempo_total
     return wrapper
 
     # Definimos la clase PCB con los tamaños de la grilla de tamaño NxM
@@ -37,7 +38,6 @@ class PCB:
                       (factorial(self.LadoN - 1) * factorial(self.LadoM - 1)))
         print("Método 1 (combinatoria):", num_caminos)
         return num_caminos
-        
     #El problema también se puede resolver de forma recursiva, para esto cree
     #el met_2 que se llama () porque sino debiamos llamarlo como pcb.met_2(N-1,M-1)
     #pero ya teníamos estos datos al crear la instancia de clase
@@ -46,7 +46,7 @@ class PCB:
         # Llama al método recursivo con los valores iniciales (0, 0)
         resultado = self._met_2_recursivo(0, 0)
         print("Método 2 (recursividad):", resultado)
-        
+        return resultado
 
     def _met_2_recursivo(self, n, m):
         # Caso base: si estamos en la esquina inferior derecha
@@ -67,34 +67,35 @@ class PCB:
             self.met_2()
         else:
             raise ValueError("Método no válido. Usa 'combinatoria' o 'recursivo'.") 
-t_combinatoria = []
-t_recursivo = []
-n_values = range(4, 15)  # Prueba tamaños pequeños para evitar tiempos excesivos en recursión
 
-# Ejecutar cada método para varios valores de N y M
-for i in n_values:
-    pcb = PCB(i, i)  # Grillas de NxN
+#a continuación el código para graficar, se prueban 6 inputs distintos
+pcb_lista = [PCB(2, 3), PCB(10, 11), PCB(11, 12),PCB(13,13)]
 
-    # Tiempo para combinatoria
-    tiempo_inicio = perf_counter()
-    pcb.ejecutar('combinatoria')
-    tiempo_total = perf_counter() - tiempo_inicio
-    t_combinatoria.append(tiempo_total)
+# Listas para almacenar los tiempos
+tiempos_combinatoria = []
+tiempos_recursivo = []
 
-    # Tiempo para recursivo
-    tiempo_inicio = perf_counter()
-    pcb.ejecutar('recursivo')
-    tiempo_total = perf_counter() - tiempo_inicio
-    t_recursivo.append(tiempo_total)
+# Ejecutar los métodos y recolectar tiempos
+for pcb in pcb_lista:
+    tiempos_combinatoria.append(pcb.ejecutar('combinatoria'))
+    tiempos_recursivo.append(pcb.ejecutar('recursivo'))
 
-# Gráfico de los tiempos de ejecución
-plt.plot(n_values, t_combinatoria, label='Combinatoria')
-plt.plot(n_values, t_recursivo, label='Recursivo')
+# Graficar los tiempos de ejecución
+labels = ['(2,3)',  '(10,11)','(11,12)','(13,13)']
+x = np.arange(len(labels))
 
-plt.xlabel('Tamaño de la grilla (N = M)')
+plt.figure(figsize=(10, 6))
+
+# Graficar las líneas
+plt.plot(x, tiempos_combinatoria, label='Combinatoria', marker='o', color='b', linestyle='-')
+plt.plot(x, tiempos_recursivo, label='Recursivo', marker='o', color='r', linestyle='-')
+
+# Configurar el gráfico
+plt.xlabel('Dimensiones (N, M)')
 plt.ylabel('Tiempo de ejecución (segundos)')
-plt.title('Comparación de tiempos de ejecución')
+plt.title('Comparación de tiempos de ejecución (Combinatoria vs Recursivo)')
+plt.xticks(x, labels)
 plt.legend()
-plt.grid(True)
-plt.savefig('tiempos_ejecucion.svg')  # Guarda el gráfico como SVG
-plt.show()     
+
+# Mostrar la gráfica
+plt.show()
