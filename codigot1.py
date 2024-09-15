@@ -72,7 +72,7 @@ class PCB:
         else:
             raise ValueError("Método no válido. Usa 'combinatoria' o 'recursivo'.") 
 
-#a continuación el código para graficar, se prueban 4 inputs distintos
+#Se prueban 4 inputs distintos que después se utilizan para graficar
 pcb_lista = [PCB(2, 3), PCB(10, 11), PCB(11, 12),PCB(13,13)]
 
 # Listas para almacenar los tiempos
