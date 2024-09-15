@@ -1,3 +1,8 @@
+**Como obtener resultados**
+Usar el interprete de python en VsCode para poder interactuar con los métodos de la clase PCB, e inicializar su propia PCB para utilizar el método .ejecutar('combinatoria') o .ejecutar('recursivo') sobre ella. O usar powershell y cambiar el parámetro N y M según desee.
+Al final se encuentra el código para graficar, el plt.show() tiene un # para que no se printee cada vez puesto que el gráfico ya se encuentra en este repositorio
+como archivo .svg
+
 ✨**Respuestas parte teórica tarea 1**✨
 
 **¿Qué es un paradigma de programación?**
