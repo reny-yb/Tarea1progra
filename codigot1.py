@@ -38,9 +38,13 @@ class PCB:
                       (factorial(self.LadoN - 1) * factorial(self.LadoM - 1)))
         print("Método 1 (combinatoria):", num_caminos)
         return num_caminos
+        
     #El problema también se puede resolver de forma recursiva, para esto cree
     #el met_2 que se llama () porque sino debiamos llamarlo como pcb.met_2(N-1,M-1)
-    #pero ya teníamos estos datos al crear la instancia de clase
+    #pero ya teníamos estos datos al crear la instancia de clase, esta forma tiene 
+    #una complejidad O(2^(N + M)), pues cada nodo puede ramificarse en dos caminos (hacia abajo
+    #o hacia la derecha), así por cada llamada recursiva se crean dos llamadas adicionales, 
+    #lo que hace que el número total de llamadas crezca exponencialmente con el tamaño de la grilla.
 
     def met_2(self):
         # Llama al método recursivo con los valores iniciales (0, 0)
