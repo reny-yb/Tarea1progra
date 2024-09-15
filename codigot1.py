@@ -2,11 +2,12 @@ import numpy as np
 import time
 import matplotlib.pyplot as plt
 from time import perf_counter # Mide el tiempo de ejecución de código de manera precisa
-#Creamos el decorador que se aplica sobre la función ejecución que calcula el tiempo de ejecución
+#Creamos el decorador que calcula el tiempo de ejecución para aplicarlo sobre el
+#método de clase que permite escoger entre las dos formas de obtener cantidad de caminos
 def tiempo_ejecucion(func):
     def wrapper(self, metodo, *args, **kwargs):
         inicio = time.time()  # tiempo de inicio
-        func(self, metodo, *args, **kwargs)  # ejecuta el método (no necesita retornar valor)
+        func(self, metodo, *args, **kwargs)  
         fin = time.time()  # tiempo de fin
         tiempo_total = fin - inicio
         print(f"Tiempo para {func.__name__} ({metodo}): {tiempo_total:.6f} segundos")
@@ -67,7 +68,7 @@ class PCB:
         else:
             raise ValueError("Método no válido. Usa 'combinatoria' o 'recursivo'.") 
 
-#a continuación el código para graficar, se prueban 6 inputs distintos
+#a continuación el código para graficar, se prueban 4 inputs distintos
 pcb_lista = [PCB(2, 3), PCB(10, 11), PCB(11, 12),PCB(13,13)]
 
 # Listas para almacenar los tiempos
